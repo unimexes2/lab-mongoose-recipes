@@ -22,16 +22,6 @@ const reciepeSchema = new Schema({
 });
 
 const RecipeModel = mongoose.model("recipe", reciepeSchema);
-
-
-
-
-
-
-
-
-
-
 // Connection to the database "recipe-app"
 mongoose
   .connect(MONGODB_URI)
@@ -41,8 +31,7 @@ mongoose
     return Recipe.deleteMany()
   })
   .then((response) => {
-   
-    return RecipeModel.create(arrayOfRecipes[0]);
+   return RecipeModel.create(arrayOfRecipes[0]);
     // Run your code here, after you have insured that the connection was made
   })
 
@@ -54,12 +43,9 @@ mongoose
   .then((response) => {
      return RecipeModel.insertMany(arrayOfRecipes);
    })
-  
   .then((response) => {
     response.forEach((val)=>{
       console.log(val.title,"added sucsesfully")
-      
-     
     })
     const query = { title: "Rigatoni alla Genovese"};
     return RecipeModel.findOneAndUpdate(query, { duration: 100 },);
@@ -75,9 +61,6 @@ mongoose
       .then(()=>{console.log("Connection closed, CHAO!")})
     }) 
    
-    // Run your code here, after you have insured that the connection was made
- 
-
-  .catch(error => {
+.catch(error => {
     console.error('Error connecting to the database', error);
   });
